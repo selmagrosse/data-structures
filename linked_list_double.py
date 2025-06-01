@@ -202,4 +202,5 @@ class DoubleLinkedList:
         return " ".join(values)
 
 if __name__ == "__main__":
-    dll = DoubleLinkedList()
+# main
+dll = DoubleLinkedList()

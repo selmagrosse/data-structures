@@ -200,4 +200,5 @@ class SingleLinkedList:
         return " ".join(values)
 
 if __name__ == "__main__":
-    sll = SingleLinkedList()
+# main
+sll = SingleLinkedList()
