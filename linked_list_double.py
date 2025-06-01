@@ -191,7 +191,7 @@ class DoubleLinkedList:
         pointer = self.head
         while pointer is not None:
              yield pointer.data
-            pointer = pointer.next
+             pointer = pointer.next
             
     def __repr__(self):
         values = []
@@ -200,5 +200,6 @@ class DoubleLinkedList:
             values.append(str(pointer.data))
             pointer = pointer.next
         return " ".join(values)
-# main
-dll = DoubleLinkedList()
+
+if __name__ == "__main__":
+    dll = DoubleLinkedList()

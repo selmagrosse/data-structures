@@ -10,7 +10,7 @@ class DynamicArray:
     def size(self):
         return self.length
     
-    def isEmpty(self):
+    def is_empty(self):
         return self.size() == 0
     
     def get(self):
@@ -115,8 +115,6 @@ class DynamicArray:
         self.array = [0] * self.capacity
         self.array[:self.length] = new_array
     
-# main
-dyn_array = DynamicArray(4)
-dyn_array.set([1,2,3,4])
-
-dyn_array.insert(5, 4)
+if __name__ == "__main__":
+    dyn_array = DynamicArray(4)
+    dyn_array.set([1,2,3,4])

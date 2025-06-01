@@ -198,5 +198,6 @@ class SingleLinkedList:
             values.append(str(pointer.data))
             pointer = pointer.next
         return " ".join(values)
-# main
-sll = SingleLinkedList()
+
+if __name__ == "__main__":
+    sll = SingleLinkedList()
