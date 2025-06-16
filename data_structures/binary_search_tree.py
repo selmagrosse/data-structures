@@ -1,11 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Jun  1 11:38:49 2025
-
-@author: selmamusic
-"""
-
 from queue import Queue
 
 class BinarySearchTree:
@@ -21,13 +13,16 @@ class BinarySearchTree:
         self.root = None
         
     def is_empty(self):
+        """Check if the binary search tree is empty."""
         return self.size() == 0
     
     def size(self):
+        """Return the number of nodes in the binary search tree."""
         return self.node_count
     
     def add(self, element):
-        if self.contains(self.root, element):
+        """Add an element to the binary search tree. Return True if added, False if it already exists."""
+        if self.contains(element):
             return False
         else:
             self.root = self._add(self.root, element)
@@ -46,17 +41,22 @@ class BinarySearchTree:
                 node.right = self._add(node.right, element)
         return node
     
-    def contains(self, node, element):
+    def contains(self, element):
+        """Check if element exists in BST."""
+        return self._contains(self.root, element)
+    
+    def _contains(self, node, element):
         if node is None:
             return False
         if element < node.value:
-            return self.contains(node.left, element)
+            return self._contains(node.left, element)
         elif element > node.value:
-            return self.contains(node.right, element)
+            return self._contains(node.right, element)
         else:
             return True
         
     def remove(self, element):
+        """Remove an element from the binary search tree. Return True if removed, False if it does not exist."""
         if self.contains(self.root, element):
             self.root = self._remove(self.root, element)
             self.node_count -= 1
@@ -64,6 +64,9 @@ class BinarySearchTree:
         return False
     
     def _remove(self, node, element):
+        if node is None:
+            return None
+        # traverse the tree to find the element and remove it
         if element < node.value:
             # go into the left subtree
             node.left = self._remove(node.left, element)
@@ -87,23 +90,28 @@ class BinarySearchTree:
         return node
     
     def dig_left(self, node):
+        """Find the leftmost node in the subtree rooted at node."""
         cur = node
         while cur.left is not None:
             cur = cur.left
         return cur
     
     def dig_right(self, node):
+        """Find the rightmost node in the subtree rooted at node."""
         cur = node
         while cur.right is not None:
             cur = cur.right
         return cur
     
     def height(self, node):
+        """Return the height of the binary search tree."""
         if node is None:
             return -1
         return max(self.height(node.left), self.height(node.right)) + 1
     
     def traverse(self, order):
+        """Traverse the binary search tree in the specified order."""
+        """Supported orders: 'preorder', 'inorder', 'postorder', 'levelorder'."""
         if order == 'preorder':
             self.preorder(self.root)
         elif order == 'inorder':
@@ -135,6 +143,7 @@ class BinarySearchTree:
         print(node.value)
         
     def levelorder(self, node):
+        """Level order traversal using a queue."""
         if node is None:
             return
         queue = Queue(node)
@@ -145,7 +154,15 @@ class BinarySearchTree:
             if cur.left:
                 queue.enqueue(cur.left)
             if cur.right:
-                queue.enqueue(cur.right)     
+                queue.enqueue(cur.right) 
+
+    def __repr__(self):
+        """Return a string representation of the binary search tree."""
+        def recurse(node):
+            if node is None:
+                return 'None'
+            return f'Node({node.value}, left={recurse(node.left)}, right={recurse(node.right)})'
+        return recurse(self.root)
     
 if __name__ == "__main__":
     bst = BinarySearchTree()
