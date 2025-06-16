@@ -57,7 +57,7 @@ class BinarySearchTree:
         
     def remove(self, element):
         """Remove an element from the binary search tree. Return True if removed, False if it does not exist."""
-        if self.contains(self.root, element):
+        if self.contains(element):
             self.root = self._remove(self.root, element)
             self.node_count -= 1
             return True
@@ -163,11 +163,3 @@ class BinarySearchTree:
                 return 'None'
             return f'Node({node.value}, left={recurse(node.left)}, right={recurse(node.right)})'
         return recurse(self.root)
-    
-if __name__ == "__main__":
-    bst = BinarySearchTree()
-    bst.add(10)
-    bst.add(5)
-    bst.add(15)
-    bst.add(3)
-    bst.add(7)
